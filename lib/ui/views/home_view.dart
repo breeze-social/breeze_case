@@ -30,6 +30,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
         viewModelBuilder: () => HomeViewModel(onRefreshCompleted: _refreshCompleted),
+        onViewModelReady: (model) => model.initialise(),
         builder: (context, model, _) => Scaffold(
             body: SmartRefresher(
               controller: _refreshController,

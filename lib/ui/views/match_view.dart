@@ -21,7 +21,7 @@ class MatchOverviewView extends StatelessWidget {
               for (final phase in [
                 _MatchPhase(
                     date: model.match.createdAt,
-                    title: 'You matched with ${model.match.matchedUsers.first.name}',
+                    title: 'You matched with ${model.match.otherUser.name}',
                     isUnlocked: true),
                 _MatchPhase(
                     date: model.match.paidAt,
@@ -44,7 +44,7 @@ class MatchOverviewView extends StatelessWidget {
                             ? 'Confirm the date'
                             : 'The date is confirmed',
                     isUnlocked: model.match.plannedOn != null,
-                    isActive: model.match.plannedOn!.isToday()),
+                    isActive: model.match.plannedOn?.isToday() ==true),
                 _MatchPhase(
                     date: model.match.plannedOn,
                     title:
@@ -52,9 +52,7 @@ class MatchOverviewView extends StatelessWidget {
                     isUnlocked: model.match.confirmedAt != null)
               ])
                 Text(phase.title)
-            ]),
-            floatingActionButton: FloatingActionButton(
-                onPressed: model.updateMatches, tooltip: 'Refresh', child: const Icon(Icons.refresh))));
+            ])));
   }
 
   Future<void> _launchDummyUrl() async {

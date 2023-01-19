@@ -1,6 +1,7 @@
 import 'package:breeze_case/core/constants/icons.dart';
 import 'package:breeze_case/core/extensions/datetime.dart';
 import 'package:breeze_case/core/models/match.dart';
+import 'package:breeze_case/ui/shared/theme.dart';
 import 'package:breeze_case/ui/shared/ui_helpers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -28,32 +29,36 @@ class MatchCard extends StatelessWidget {
         width: screenWidth() * .9,
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-          child: Row(children: [
-            CachedNetworkImage(
-                imageUrl: match.matchedUsers.first.photo,
-                errorWidget: (_, __, ___) => const SizedBox(width: 100, height: 100, child: Icon(Icons.error)),
-                imageBuilder: (_, imageProvider) => Container(
-                    width: 201,
-                    height: 343,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        borderRadius: const BorderRadius.all(Radius.circular(12)),
-                        image: DecorationImage(image: imageProvider, fit: BoxFit.cover)))),
-            const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('Date details'),
-                for (final info in itemsForDate) _DateDetailItem(info),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
-                  Text('Name'),
-                  Text('Age'),
-                  Text('Location'),
-                ]),
-                const Icon(Icons.favorite_border),
-              ],
-            )
-          ]),
+          elevation: 3,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 23),
+            child: Row(children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: CachedNetworkImage(
+                    imageUrl: match.otherUser.photo,
+                    errorWidget: (_, __, ___) => const SizedBox(width: 100, height: 100, child: Icon(Icons.error)),
+                    imageBuilder: (_, imageProvider) => Container(
+                        width: 134,
+                        height: 176,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            borderRadius: const BorderRadius.all(Radius.circular(12)),
+                            image: DecorationImage(image: imageProvider, fit: BoxFit.cover)))),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                    const SizedBox(height: 10),
+                    Text('Date details', style: BreezeTheme.themeData.textTheme.headline2),
+                    const SizedBox(height: 10),
+                    for (final info in itemsForDate) _DateDetailItem(info),
+                  ]))
+            ]),
+          ),
         ),
       ),
     );
