@@ -7,7 +7,14 @@ class BreezeTheme {
   static ThemeData themeData = ThemeData(
       primaryColor: kDarkBlue,
       backgroundColor: kWhiteColor,
-      appBarTheme: const AppBarTheme(color: kWhiteColor, elevation: 0),
+      iconTheme: const IconThemeData(color: kDarkBlue),
+      primaryIconTheme: const IconThemeData(color: kDarkBlue),
+      appBarTheme: const AppBarTheme(
+          backgroundColor: kWhiteColor,
+          foregroundColor: kDarkBlue,
+          actionsIconTheme: IconThemeData(color: kDarkBlue),
+          elevation: 0,
+          iconTheme: IconThemeData(color: kDarkBlue)),
       scaffoldBackgroundColor: kWhiteColor,
       cardTheme: CardTheme(
           color: kWhiteColor,
@@ -29,5 +36,14 @@ class BreezeTheme {
           button: GoogleFonts.dmSans(fontSize: 12, fontWeight: FontWeight.w400, color: kDarkBlue),
           overline: GoogleFonts.dmSans(fontSize: 10, fontWeight: FontWeight.w400, color: kDarkBlue)),
       cardColor: kWhiteColor,
+      dialogTheme: DialogTheme(
+          titleTextStyle: GoogleFonts.dmSans(fontSize: 20, fontWeight: FontWeight.w700, color: kPinkColor),
+          contentTextStyle: GoogleFonts.dmSans(fontSize: 16, fontWeight: FontWeight.w400, color: kDarkBlue),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+      textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+              foregroundColor: kPinkColor,
+              textStyle: GoogleFonts.dmSans(fontSize: 16, fontWeight: FontWeight.w700, color: kPinkColor),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)))),
       fontFamily: GoogleFonts.dmSans().fontFamily);
 }

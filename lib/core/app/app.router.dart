@@ -6,7 +6,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:breeze_case/ui/views/home_view.dart' as _i2;
-import 'package:breeze_case/ui/views/match_view.dart' as _i3;
+import 'package:breeze_case/ui/views/match_progress_view.dart' as _i3;
 import 'package:flutter/cupertino.dart' as _i4;
 import 'package:flutter/foundation.dart' as _i5;
 import 'package:flutter/material.dart';
@@ -16,11 +16,11 @@ import 'package:stacked_services/stacked_services.dart' as _i6;
 class Routes {
   static const homeView = '/';
 
-  static const matchOverviewView = '/match-overview-view';
+  static const matchProgressView = '/match-progress-view';
 
   static const all = <String>{
     homeView,
-    matchOverviewView,
+    matchProgressView,
   };
 }
 
@@ -31,8 +31,8 @@ class StackedRouter extends _i1.RouterBase {
       page: _i2.HomeView,
     ),
     _i1.RouteDef(
-      Routes.matchOverviewView,
-      page: _i3.MatchOverviewView,
+      Routes.matchProgressView,
+      page: _i3.MatchProgressView,
     ),
   ];
 
@@ -43,11 +43,11 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i3.MatchOverviewView: (data) {
-      final args = data.getArgs<MatchOverviewViewArguments>(nullOk: false);
+    _i3.MatchProgressView: (data) {
+      final args = data.getArgs<MatchProgressViewArguments>(nullOk: false);
       return _i4.CupertinoPageRoute<dynamic>(
         builder: (context) =>
-            _i3.MatchOverviewView(args.matchId, key: args.key),
+            _i3.MatchProgressView(args.matchId, key: args.key),
         settings: data,
       );
     },
@@ -59,8 +59,8 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-class MatchOverviewViewArguments {
-  const MatchOverviewViewArguments({
+class MatchProgressViewArguments {
+  const MatchProgressViewArguments({
     required this.matchId,
     this.key,
   });
@@ -85,7 +85,7 @@ extension NavigatorStateExtension on _i6.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToMatchOverviewView({
+  Future<dynamic> navigateToMatchProgressView({
     required String matchId,
     _i5.Key? key,
     int? routerId,
@@ -94,8 +94,8 @@ extension NavigatorStateExtension on _i6.NavigationService {
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   }) async {
-    return navigateTo<dynamic>(Routes.matchOverviewView,
-        arguments: MatchOverviewViewArguments(matchId: matchId, key: key),
+    return navigateTo<dynamic>(Routes.matchProgressView,
+        arguments: MatchProgressViewArguments(matchId: matchId, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -116,7 +116,7 @@ extension NavigatorStateExtension on _i6.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithMatchOverviewView({
+  Future<dynamic> replaceWithMatchProgressView({
     required String matchId,
     _i5.Key? key,
     int? routerId,
@@ -125,8 +125,8 @@ extension NavigatorStateExtension on _i6.NavigationService {
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   }) async {
-    return replaceWith<dynamic>(Routes.matchOverviewView,
-        arguments: MatchOverviewViewArguments(matchId: matchId, key: key),
+    return replaceWith<dynamic>(Routes.matchProgressView,
+        arguments: MatchProgressViewArguments(matchId: matchId, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

@@ -15,7 +15,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final RefreshController _refreshController = RefreshController(initialRefresh: false);
+  final RefreshController _refreshController = RefreshController(initialRefresh: true);
 
   /// Called when the user pulls down to refresh.
   void _refreshCompleted() => _refreshController.refreshCompleted();
@@ -33,18 +33,15 @@ class _HomeViewState extends State<HomeView> {
         onViewModelReady: (model) => model.initialise(),
         builder: (context, model, _) => Scaffold(
             body: SmartRefresher(
-              controller: _refreshController,
-              onRefresh: model.updateMatches,
-              child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: model.matches.length,
-                  itemBuilder: (context, index) {
-                    return MatchCard(model.matches[index],
-                        onPressed: () => locator<NavigationService>().navigateTo(Routes.matchOverviewView,
-                            arguments: MatchOverviewViewArguments(matchId: model.matches[index].id)));
-                  }),
-            ),
-            floatingActionButton: FloatingActionButton(
-                onPressed: model.updateMatches, tooltip: 'Increment', child: const Icon(Icons.add))));
+                controller: _refreshController,
+                onRefresh: model.updateMatches,
+                child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: model.matches.length,
+                    itemBuilder: (context, index) => MatchCard(model.matches[index],
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        onPressed: () => locator<NavigationService>().navigateTo(Routes.matchProgressView,
+                            arguments: MatchProgressViewArguments(matchId: model.matches[index].id)))))));
   }
 }

@@ -11,16 +11,14 @@ class HomeViewModel extends BaseViewModel {
 
   List<Match> get matches => locator<MatchRepository>().matches;
 
-  void initialise() async {
+  Future<void> initialise() async {
     locator<MatchRepository>().addListener(notifyListeners);
     await updateMatches();
-    onRefreshCompleted();
   }
 
   Future<void> updateMatches() async {
-    setBusy(true);
     final bool success = await locator<MatchRepository>().getMatches();
     if (!success) debugPrint('Error while updating matches');
-    setBusy(false);
+    onRefreshCompleted();
   }
 }

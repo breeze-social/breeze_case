@@ -2,13 +2,13 @@ import 'package:breeze_case/core/api/api.dart';
 import 'package:breeze_case/core/services/match_repo.dart';
 import 'package:breeze_case/core/services/user_repo.dart';
 import 'package:breeze_case/ui/views/home_view.dart';
-import 'package:breeze_case/ui/views/match_view.dart';
+import 'package:breeze_case/ui/views/match_progress_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 @StackedApp(routes: [
   CupertinoRoute(page: HomeView, initial: true),
-  CupertinoRoute(page: MatchOverviewView),
+  CupertinoRoute(page: MatchProgressView),
 ], dependencies: [
   LazySingleton(classType: Api),
   LazySingleton(
